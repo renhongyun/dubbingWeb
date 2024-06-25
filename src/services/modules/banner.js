@@ -1,7 +1,7 @@
 import hyRequest from '../request'
 
-export function getVideoList() {
+export function getBanners() {
   return hyRequest.get({
-    url: '/video/all'
+    url: '/carousel/list'
   })
 }

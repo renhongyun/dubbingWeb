@@ -1,1 +1,6 @@
 export * from './modules/video'
+export * from './modules/audio'
+export * from './modules/banner'
+export * from './modules/home'
+export * from './modules/tag'
+export * from './modules/author'
