@@ -2,9 +2,9 @@
   <div class="home">
     <banner></banner>
     <div class="box">
-      <div class="wx">
+      <div class="wx" @click="copyWx">
         <img src="@/assets/img/wxicon.png" class="wxicon" />
-        <span>wx:111111</span>
+        <span>{{ wxNumber }}</span>
         <span class="tip">（长按复制）</span>
       </div>
       <div class="cover-box">
@@ -36,6 +36,7 @@
     </div>
   </div>
 </template>
+
 <script setup>
 import { ref, onMounted } from 'vue'
 import { useRouter } from 'vue-router'
@@ -45,15 +46,16 @@ import banner from '@/components/banner.vue'
 const categoryList = ref([])
 const categoryTags = ref([])
 const router = useRouter()
+const wxNumber = ref('111111') // 设置默认的微信号
 
 const fetchCategories = async () => {
   const res = await getCategories()
-  categoryList.value = res.data
+  categoryList.value = res?.data
 }
 
 const fetchCategoriesAll = async () => {
   const res = await getCategoriesAll()
-  categoryTags.value = res.data
+  categoryTags.value = res?.data
   console.log('分类列表', categoryTags.value)
 }
 
@@ -65,6 +67,15 @@ const navigateToDetailTag = (categoryId, type, tagId) => {
   router.push({ path: `/detail-tag`, query: { categoryId, type, tagId } })
 }
 
+const copyWx = async () => {
+  try {
+    await navigator.clipboard.writeText(wxNumber.value)
+    alert('微信号复制成功！')
+  } catch (err) {
+    console.error('无法复制到剪贴板:', err)
+  }
+}
+
 onMounted(() => {
   fetchCategories()
   fetchCategoriesAll()
@@ -74,9 +85,15 @@ onMounted(() => {
 <style scoped>
 .home {
   background-color: #f7f6fb;
+  padding: 18px 0;
+  display: flex;
+  flex-direction: column;
+  min-height: calc(100vh - 44px);
+  box-sizing: border-box;
 }
 .box {
   padding: 0 30px;
+  flex: 1;
 }
 .cover-box {
   display: flex;
@@ -144,6 +161,11 @@ onMounted(() => {
   align-items: center;
   font-size: 14px;
   padding: 14px 0;
+
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+  user-select: none;
 }
 .wxicon {
   width: 24px;
@@ -153,5 +175,10 @@ onMounted(() => {
 .tip {
   font-size: 11px;
   color: #a2a2a2;
+}
+
+.tip {
+  font-size: 12px;
+  color: #888;
 }
 </style>

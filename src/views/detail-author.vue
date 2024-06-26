@@ -100,7 +100,7 @@ watch(route, () => {
 .page {
   display: flex;
   flex-direction: column;
-  min-height: 98vh; /* 确保页面至少占满整个视口高度 */
+  min-height: calc(100vh - 44px); /* 确保页面至少占满整个视口高度 */
 }
 .recommend-list {
   flex: 1; /* 使用flex-grow: 1来自动拉伸填充剩余空间 */

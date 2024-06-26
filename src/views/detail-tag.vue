@@ -59,20 +59,6 @@ const fetchTags = async () => {
   setPageTitle()
 }
 
-// const setPageTitle = () => {
-//   const { type, tagId } = route.query
-//   if (type == 0) {
-//     const tag = tag1.value.find((item) => item.id == tagId)
-//     if (tag) {
-//       document.title = tag.name
-//     }
-//   } else if (type == 2) {
-//     const tag = tag3.value.find((item) => item.id == tagId)
-//     if (tag) {
-//       document.title = tag.name
-//     }
-//   }
-// }
 const setPageTitle = () => {
   const { type, tagId } = route.query
   if (type == 0) {
@@ -132,7 +118,8 @@ onMounted(() => {
 .page {
   display: flex;
   flex-direction: column;
-  min-height: 100vh;
+  min-height: calc(100vh - 44px);
+  padding: 15px 0;
 }
 
 .recommend-list {

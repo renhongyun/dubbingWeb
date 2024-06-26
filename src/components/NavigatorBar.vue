@@ -19,7 +19,6 @@ const title = ref(globalTitle.value)
 const showBackButton = ref(false)
 
 const updateNavigator = () => {
-  // 判断是否为根路径，决定是否显示返回按钮
   showBackButton.value = route.path !== '/'
 }
 

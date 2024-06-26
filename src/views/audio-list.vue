@@ -20,7 +20,7 @@
 </template>
 
 <script setup>
-import { ref, onMounted, watch } from 'vue'
+import { ref, onMounted } from 'vue'
 import { useRoute, useRouter } from 'vue-router'
 import background from '@/components/background.vue'
 import banner from '@/components/banner.vue'
@@ -114,27 +114,12 @@ onMounted(() => {
 })
 </script>
 
-<!-- <style scoped>
-.recommend-list {
-  padding: 25px 0;
-  padding-bottom: 40px;
-  border-radius: 20px;
-  background-color: #f7f6fb;
-  width: 100%;
-}
-.tag-box {
-  margin: 18.5px 0;
-  margin-bottom: 11px;
-}
-/* .page {
-  background-color: #f7f6fb;
-} */
-</style> -->
 <style scoped>
 .page {
   display: flex;
   flex-direction: column;
-  min-height: 100vh; /* 确保页面至少占满整个视口高度 */
+  min-height: calc(100vh - 44px); /* 确保页面至少占满整个视口高度 */
+  padding: 15px 0;
 }
 
 .recommend-list {

@@ -36,7 +36,8 @@ onMounted(() => {
 
 <style scoped>
 .banner {
-  margin: 15px auto;
+  /* margin: 15px auto; */
+  margin: 0 auto;
   margin-bottom: 0;
   width: 88%;
   border-radius: 10px;

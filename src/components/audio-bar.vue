@@ -168,6 +168,7 @@ watch(
   font-size: 12px;
   color: #c7c6cb;
   margin-top: 5px;
+  cursor: pointer;
 }
 .box .buttons .play {
   width: 40px;

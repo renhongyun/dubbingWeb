@@ -72,6 +72,7 @@ const onTagClick = (id, sort) => {
   margin-right: 5px;
   margin-bottom: 8px;
   flex-shrink: 0;
+  cursor: pointer;
 }
 .tags-container {
   display: flex;
@@ -80,5 +81,6 @@ const onTagClick = (id, sort) => {
 .selected {
   background-color: #fff;
   color: #ffcc00;
+  cursor: pointer;
 }
 </style>
