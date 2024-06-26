@@ -59,6 +59,9 @@ const onTagClick = (id, sort) => {
 }
 .sort {
   flex-shrink: 0;
+  position: relative;
+  top: 2px;
+  right: 3px;
 }
 .tags {
   display: flex;

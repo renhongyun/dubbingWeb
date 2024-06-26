@@ -26,3 +26,8 @@ a {
 img {
   vertical-align: top;
 }
+/* 隐藏垂直滚动条 */
+::-webkit-scrollbar {
+  display: none;
+  /* 适用于Chrome, Safari, Opera */
+}

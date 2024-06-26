@@ -81,6 +81,7 @@ onMounted(() => {
 .cover-box {
   display: flex;
   justify-content: space-between;
+  /* justify-content: center; */
   flex-wrap: nowrap;
   padding: 0 5px;
 }
@@ -96,6 +97,7 @@ onMounted(() => {
 .cover {
   width: 100%;
   height: 135px;
+  cursor: pointer;
 }
 .title {
   position: absolute;
@@ -126,6 +128,7 @@ onMounted(() => {
   text-align: center;
   line-height: 33px;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  cursor: pointer;
 }
 .tag-container {
   margin: 0 auto;

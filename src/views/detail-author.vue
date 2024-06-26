@@ -11,6 +11,7 @@
         :key="item.id"
         :itemData="item"
         @shareAudio="handleShareAudio"
+        :showAuthorInfo="false"
       ></audio-bar>
     </div>
   </div>
@@ -91,7 +92,7 @@ onMounted(() => {
 })
 
 watch(route, () => {
-  updatePageTitle()
+  updateGlobalTitle()
 })
 </script>
 
