@@ -36,7 +36,6 @@
     </div>
   </div>
 </template>
-
 <script setup>
 import { ref, onMounted } from 'vue'
 import { useRouter } from 'vue-router'
@@ -62,8 +61,8 @@ const navigateToAudioList = (id) => {
   router.push({ path: `/audiolist`, query: { id } })
 }
 
-const navigateToDetailTag = (categoryid, type, tagid) => {
-  router.push({ path: `/detail-tag`, query: { categoryId: categoryid, type, tagId: tagid } })
+const navigateToDetailTag = (categoryId, type, tagId) => {
+  router.push({ path: `/detail-tag`, query: { categoryId, type, tagId } })
 }
 
 onMounted(() => {

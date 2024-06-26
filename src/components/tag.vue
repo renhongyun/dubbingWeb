@@ -1,12 +1,12 @@
 <template>
   <div class="wrapper">
-    <div class="sort">{{ sort }}：</div>
+    <div class="sort">{{ sort }}:</div>
     <div class="tags-container">
       <div
-        v-for="tag in tagList"
+        v-for="tag in localTagList"
         :key="tag.id"
         :class="['tags', { selected: tag.selected }]"
-        @click="onTagClick(tag.id, sort)"
+        @click="() => onTagClick(tag.id, sort)"
       >
         {{ tag.name }}
       </div>

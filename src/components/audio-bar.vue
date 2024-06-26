@@ -42,6 +42,8 @@ const currentTime = ref(0)
 const duration = ref(0)
 const authorList = ref([])
 
+const router = useRouter()
+
 const fetchAuthor = async () => {
   const res = await getAuthorList()
   authorList.value = res.data
@@ -80,7 +82,7 @@ const onShare = () => {
 const viewOtherSamples = () => {
   const { dubbingActorId } = props.itemData
   if (dubbingActorId) {
-    useRouter().push(`/detail-author/${dubbingActorId}`)
+    router.push({ path: '/detail-author', query: { dubbingActorId } })
   } else {
     console.error('dubbingActorId is undefined')
   }
@@ -143,10 +145,12 @@ onBeforeUnmount(() => {
   margin-bottom: 10px;
 }
 .box .info {
-  width: 63%;
+  /* width: 63%; */
+  margin-left: 8px;
   overflow: hidden;
   white-space: nowrap;
   text-overflow: ellipsis;
+  text-align: left;
 }
 .box .info .title {
   font-weight: 700;

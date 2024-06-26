@@ -28,6 +28,7 @@ import tag from '@/components/tag.vue'
 import audioBar from '@/components/audio-bar.vue'
 import { getAudioList } from '@/services/modules/audio'
 import { getAllTags } from '@/services/modules/tags'
+import { globalTitle } from '@/store/globalTitle'
 
 const sex = ref([
   { id: 1, name: '男声', selected: false },
@@ -54,16 +55,19 @@ const fetchTagsByCategoryId = async (id) => {
     tag1.value = response1.data
     const response2 = await getAllTags(1)
     tag2.value = response2.data
+    // 修改标题
     document.title = '中文配音'
+    globalTitle.value = '中文配音'
   } else {
     const response3 = await getAllTags(2)
     tag3.value = response3.data
+    // 修改标题
     document.title = '外语配音'
+    globalTitle.value = '外语配音'
   }
 }
 
-const onTagClick = async (event) => {
-  const { id, sort, selected } = event.detail
+const onTagClick = async ({ id, sort, selected }) => {
   if (selected) {
     if (sort === '情绪') {
       filters.value.emotionTagId = id
@@ -110,10 +114,7 @@ onMounted(() => {
 })
 </script>
 
-<style scoped>
-/* .page {
-  background-color: #f7f6fb;
-} */
+<!-- <style scoped>
 .recommend-list {
   padding: 25px 0;
   padding-bottom: 40px;
@@ -121,6 +122,30 @@ onMounted(() => {
   background-color: #f7f6fb;
   width: 100%;
 }
+.tag-box {
+  margin: 18.5px 0;
+  margin-bottom: 11px;
+}
+/* .page {
+  background-color: #f7f6fb;
+} */
+</style> -->
+<style scoped>
+.page {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh; /* 确保页面至少占满整个视口高度 */
+}
+
+.recommend-list {
+  flex: 1; /* 使用flex-grow: 1来扩展至父容器剩余空间 */
+  padding: 25px 0;
+  padding-bottom: 40px;
+  border-radius: 20px;
+  background-color: #f7f6fb;
+  width: 100%;
+}
+
 .tag-box {
   margin: 18.5px 0;
   margin-bottom: 11px;

@@ -1,35 +1,53 @@
 <template>
-  <div class="video-item">
-    <div class="item">
-      <div class="album">
-        <img :src="itemData.cover" mode="" class="image" />
-        <div class="info">
-          <div class="count">{{ formatCount(itemData.playCount) }}</div>
-          <div class="duration">{{ formatTime(itemData.mv.videos[0].duration) }}</div>
-        </div>
+  <div class="item" @click="onTap(itemData)">
+    <div class="album">
+      <img :src="itemData.cover" class="image" />
+      <div class="info">
+        <div class="count"></div>
+        <div class="duration"></div>
       </div>
-      <div class="content">{{ itemData.name }} - {{ itemData.artistName }}</div>
     </div>
+    <div class="content">{{ itemData.name }}</div>
   </div>
 </template>
-<script setup>
-import { formatCount, formatTime } from '@/utils/format.js'
 
-defineProps({
+<script setup>
+import { defineProps } from 'vue'
+import { useRouter } from 'vue-router'
+
+const props = defineProps({
   itemData: {
     type: Object,
-    value: {}
+    required: true
   }
 })
+
+const router = useRouter()
+
+const onTap = (itemData) => {
+  //   console.log('Navigating to:', itemData.url)
+  router
+    .push({
+      path: '/detail-video',
+      query: { videoUrl: encodeURIComponent(itemData.url) }
+    })
+    .then(() => {
+      //   console.log('complete')
+    })
+    .catch((err) => {
+      console.error(err)
+    })
+}
 </script>
-<style lang="less" scoped>
+
+<style scoped>
 .item {
-  margin-bottom: 7px;
+  margin-bottom: 15;
 }
 
 .album {
   position: relative;
-  border-radius: 8px;
+  border-radius: 6px;
   overflow: hidden;
   display: flex;
 }
@@ -58,7 +76,8 @@ defineProps({
 .info .count::before {
   content: '';
   position: absolute;
-  left: -1px;
+  left: 3px;
+  top: -16px;
   width: 15px;
   height: 12px;
   background-size: cover;
@@ -68,8 +87,7 @@ defineProps({
 .content {
   margin-top: 5px;
   font-size: 14px;
-
-  /* 显示两行 */
+  margin-left: 5px;
   overflow: hidden;
   text-overflow: ellipsis;
   display: -webkit-box;
