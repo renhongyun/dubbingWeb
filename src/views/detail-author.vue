@@ -2,8 +2,8 @@
   <div class="page">
     <background></background>
     <div class="tag-box">
-      <tag sort="情绪" :tagList="tag1"></tag>
-      <tag sort="类型" :tagList="tag2"></tag>
+      <tag sort="情绪" :tagList="tag1" @tagClick="onTagClick"></tag>
+      <tag sort="类型" :tagList="tag2" @tagClick="onTagClick"></tag>
     </div>
     <div class="recommend-list">
       <audio-bar
@@ -15,6 +15,7 @@
     </div>
   </div>
 </template>
+
 <script setup>
 import { ref, onMounted, watch } from 'vue'
 import { useRoute } from 'vue-router'
@@ -69,6 +70,19 @@ const updateGlobalTitle = () => {
   }
 }
 
+const onTagClick = async ({ id, sort, selected }) => {
+  const filters = { ...route.query }
+
+  if (sort === '情绪') {
+    filters.emotionTagId = selected ? id : null
+  } else if (sort === '类型') {
+    filters.categoryTagId = selected ? id : null
+  }
+
+  const res = await getAudioList(filters)
+  audioList.value = res.data
+}
+
 onMounted(() => {
   dubbingActorId.value = route.query.dubbingActorId
   fetchAudios(dubbingActorId.value)
@@ -76,14 +90,9 @@ onMounted(() => {
   fetchAuthor()
 })
 
-watch(
-  () => route.query.dubbingActorId,
-  (newDubbingActorId) => {
-    dubbingActorId.value = newDubbingActorId
-    fetchAudios(newDubbingActorId)
-    fetchAuthor()
-  }
-)
+watch(route, () => {
+  updatePageTitle()
+})
 </script>
 
 <style scoped>
