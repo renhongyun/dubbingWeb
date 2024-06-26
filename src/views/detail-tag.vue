@@ -132,11 +132,11 @@ onMounted(() => {
 .page {
   display: flex;
   flex-direction: column;
-  min-height: 100vh; /* 确保页面至少占满整个视口高度 */
+  min-height: 100vh;
 }
 
 .recommend-list {
-  flex: 1; /* 使用flex-grow: 1来扩展至父容器剩余空间 */
+  flex: 1;
   padding: 25px 0;
   padding-bottom: 40px;
   border-radius: 20px;
