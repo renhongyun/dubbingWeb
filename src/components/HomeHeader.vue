@@ -1,29 +1,31 @@
 <template>
-  <div
-    class="navigator-bar"
-    :class="{ 'mobile-view': isMobileView, 'desktop-view': !isMobileView }"
-  >
-    <div class="back-button" @click="goBack">
-      <img src="@/assets/img/back.png" alt="Back" class="back-icon" />
+  <div class="Home-Header">
+    <div class="logo">
+      <img src="@/assets/img/logo.png" alt="Back" class="logo-icon" />
     </div>
-    <div class="title">{{ title }}</div>
+    <div class="title">产品名</div>
     <div class="share-button" @click="sharePage">
-      <img src="@/assets/img/shareIcon.png" alt="Share" class="share-icon" />
+      <img src="@/assets/img/shareIcon2.png" alt="Share" class="share-icon" />
     </div>
   </div>
 </template>
 
 <script setup>
-import { ref, onMounted, onUnmounted, watch, watchEffect } from 'vue'
+import { ref, watch, watchEffect } from 'vue'
 import { useRouter, useRoute } from 'vue-router'
 import { ElMessage } from 'element-plus'
+// import 'element-plus/theme-chalk/el-message.css'
 import { globalTitle } from '@/store/globalTitle'
 
 const router = useRouter()
 const route = useRoute()
 
 const title = ref(globalTitle.value)
-const isMobileView = ref(false)
+// const showBackButton = ref(false)
+
+// const updateNavigator = () => {
+//   showBackButton.value = route.path !== '/'
+// }
 
 watch(route)
 
@@ -31,9 +33,9 @@ watchEffect(() => {
   title.value = globalTitle.value
 })
 
-const goBack = () => {
-  router.back()
-}
+// const goBack = () => {
+//   router.back()
+// }
 
 const sharePage = () => {
   const currentUrl = window.location.href
@@ -52,76 +54,65 @@ const sharePage = () => {
       })
     })
 }
-
-const checkMobileView = () => {
-  const isMobile = window.innerWidth <= 768 || window.innerWidth < window.innerHeight
-  isMobileView.value = isMobile
-}
-
-onMounted(() => {
-  checkMobileView()
-  window.addEventListener('resize', checkMobileView)
-})
-
-onUnmounted(() => {
-  window.removeEventListener('resize', checkMobileView)
-})
 </script>
 
 <style scoped>
-.navigator-bar {
+.Home-Header {
   display: flex;
   align-items: center;
-  justify-content: space-between;
-  background-color: #f9db17;
-  padding: 10px 0px;
+  justify-content: start;
+  /* background-color: #f9db17; */
+  padding: 2vh 2vw;
+  /* box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); */
   height: 24px;
   position: relative;
-  /* box-sizing: border-box; */
+  margin-bottom: 8px;
+  /* width: 100%; */
+  /* width: 400px; */
 }
 
-.back-button {
+.logo {
   background: none;
   border: none;
   cursor: pointer;
+  margin-right: 18px;
 }
 
-.back-icon {
-  width: 24px;
-  height: 24px;
+.logo-icon {
+  width: 36px;
+  height: 36px;
   position: relative;
   z-index: 5;
-  left: 20px;
+  margin-left: 18px;
 }
 
 .title {
-  flex: 1;
+  /* flex: 1; */
   text-align: center;
-  font-size: 18px;
+  font-size: 21px;
   font-weight: 700;
-  color: #fff;
-  position: absolute;
+  /* color: #333; */
+  color: rgba(170, 128, 226);
+  /* position: absolute;
   left: 0;
   right: 0;
-  z-index: 1;
+  z-index: 1; */
 }
 
 .share-button {
   background: none;
   border: none;
   cursor: pointer;
+  /* background-color: #fff; */
+  position: absolute;
+  right: 28px;
+  /* bottom: 0; */
 }
 
 .share-icon {
-  width: 26px;
-  height: 26px;
+  width: 32px;
+  height: 32px;
   position: relative;
   z-index: 5;
-  right: 20px;
-}
-
-.navigator-bar.desktop-view {
-  width: 430px;
-  margin: 0 auto;
 }
 </style>

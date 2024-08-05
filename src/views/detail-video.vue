@@ -1,9 +1,9 @@
 <template>
-  <div>
-    <div>{{ videoId }}</div>
+  <div class="page">
+    <!-- <div>{{ videoId }}</div> -->
     <video :src="videoUrl" class="video" controls referrerpolicy="origin"></video>
     <div class="title">{{ videoName }}</div>
-    <div class="video-list" style="top: 5px">
+    <div class="video-list">
       <video-item
         v-for="item in videoList"
         :key="item.id"
@@ -43,6 +43,8 @@ const fetchVideoDetails = async () => {
     videoName.value = videoDetails.name
     videoList.value = videos
   }
+  //确保拿到
+  // console.log(videoUrl.value)
 }
 
 const onVideoItemTap = (item) => {
@@ -63,7 +65,10 @@ watch(route, () => {
 </script>
 
 <style scoped>
-page {
+.page {
+  display: flex;
+  flex-direction: column;
+  min-height: calc(100vh - 44px);
   background-color: #f7f6fb;
 }
 .video {
@@ -75,12 +80,19 @@ page {
 }
 .video-list {
   display: flex;
-  justify-content: space-around;
   flex-wrap: wrap;
-  padding: 0 5px;
-  position: relative;
+  justify-content: space-between;
+  padding: 0 20px;
 }
 .item {
-  width: 42%;
+  width: 48%;
+  /* height: 120px; */
+  margin-bottom: 30px;
+}
+@media (min-width: 769px) {
+  .page {
+    width: 430px;
+    margin: 0 auto;
+  }
 }
 </style>

@@ -1,6 +1,5 @@
 <template>
   <div class="page">
-    <background />
     <banner />
     <div class="tag-box">
       <tag sort="性别" :tagList="sex" @tagClick="onTagClick" />
@@ -19,7 +18,7 @@
 <script setup>
 import { ref, onMounted, computed } from 'vue'
 import { useRoute, useRouter } from 'vue-router'
-import background from '@/components/background.vue'
+
 import banner from '@/components/banner.vue'
 import tag from '@/components/tag.vue'
 import audioBar from '@/components/audio-bar.vue'
@@ -119,14 +118,15 @@ onMounted(() => {
   display: flex;
   flex-direction: column;
   min-height: calc(100vh - 44px);
-  padding: 15px 0;
+  /* padding: 15px 0; */
+  background: linear-gradient(#f8d416, #f2870d);
 }
 
 .recommend-list {
   flex: 1;
   padding: 25px 0;
   padding-bottom: 40px;
-  border-radius: 20px;
+  border-radius: 20px 20px 0 0;
   background-color: #f7f6fb;
   width: 100%;
 }
@@ -134,5 +134,11 @@ onMounted(() => {
 .tag-box {
   margin: 18.5px 0;
   margin-bottom: 11px;
+}
+@media (min-width: 769px) {
+  .page {
+    width: 430px;
+    margin: 0 auto;
+  }
 }
 </style>

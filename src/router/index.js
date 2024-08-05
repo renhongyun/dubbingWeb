@@ -8,7 +8,7 @@ const router = createRouter({
     {
       path: '/',
       component: () => import('@/views/home-page.vue'),
-      meta: { title: '首页' }
+      meta: { title: '首页', hideNavigatorBar: true }
     },
     {
       path: '/audiolist',

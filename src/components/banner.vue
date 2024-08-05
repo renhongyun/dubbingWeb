@@ -5,7 +5,9 @@
       :key="item.targetId"
       @click="onBannerTap(item.videoUrl)"
     >
-      <img :src="item.url" class="banner-image" />
+      <div class="banner-image-container">
+        <img :src="item.url" class="banner-image" />
+      </div>
     </van-swipe-item>
   </van-swipe>
 </template>
@@ -36,17 +38,26 @@ onMounted(() => {
 
 <style scoped>
 .banner {
-  /* margin: 15px auto; */
-  margin: 0 auto;
-  margin-bottom: 0;
-  width: 88%;
-  border-radius: 10px;
-  height: 150px;
-  overflow: hidden;
+  margin: 15px auto;
+  width: 100%;
+  max-width: 340px;
   position: relative;
+  overflow: hidden;
+  border-radius: 10px;
+}
+
+.banner-image-container {
+  position: relative;
+  width: 100%;
+  padding-top: 37.5%;
 }
 
 .banner-image {
+  position: absolute;
+  top: 0;
+  left: 0;
   width: 100%;
+  height: 100%;
+  object-fit: cover;
 }
 </style>

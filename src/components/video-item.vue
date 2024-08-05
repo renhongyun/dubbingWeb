@@ -50,10 +50,21 @@ const onTap = (itemData) => {
   border-radius: 6px;
   overflow: hidden;
   display: flex;
+  /* height: 180px; */
+  /* width: 48%; */
+  padding-top: 56.25%;
 }
 
 .album .image {
   width: 100%;
+  /* height: 100%; */
+  /* height: 90px; */
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
 }
 
 .info {

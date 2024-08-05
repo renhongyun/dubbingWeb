@@ -3,6 +3,7 @@ import { createPinia } from 'pinia'
 
 import { Swipe, SwipeItem } from 'vant'
 import 'vant/lib/index.css'
+import 'element-plus/dist/index.css'
 
 import App from './App.vue'
 import router from './router'
